@@ -4,6 +4,8 @@
 	<head>
 		<title>Unfortunate Events Hangman</title>
 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -26,44 +28,45 @@
 		<header>
 
 			<h2>A Series of Unfortunate Events</h2>
+			<h1>HANGMAN</h1>
 
-				<h1>HANGMAN</h1>	
+			<div class="row">
 
+				<div class="col-sm-2">
+				</div>
+
+				<div class="col-sm-3 counter">
+					<h3>YOU<br><span id="winsCount">0</span></h3>
+				</div> <!--end of wins column -->
+
+				<div class="col-sm-2">
+				</div>
+
+				<div class="col-sm-3 counter">
+					<h3>COUNT OLAF<br><span id="lossesCount">0</span></h3>
+				</div> <!--end of losses column -->
+
+			</div> <!-- end of header row -->
+				
 		</header>
 
 
 
-		<section id="imageAndQuote"> <!-- contains image, wins, correct answer and quote from book-->
+		<main> <!-- contains image, correct answer, blanks and quote from book-->
 			<div class="row">
 
 				<div class="col-sm-3">
+					<h3 id="answer">Press any letter to make your first guess.</h3>
 					<img class="img-responsive" src="assets/images/CountOlafInCage.jpg" alt="book cover" width="300">
 				</div> <!-- end of col 1 -->
 
 				<div class="col-sm-9" id="winsAndQuote">
-					<div id="wins">
-						<h3>YOU:<span id="winsCount">0</span></h3>
-						<h3>COUNT OLAF:<span id="lossesCount">0</span></h3>
-					</div>
-
-					<div id="correctAnswer">
-						<h3>Press any letter to make your first guess.</h3>
-					</div>
 
 					<div id="quote">
 						<p>“In this book, not only is there no happy ending, there is no happy beginning and very few happy things in the middle.”<br>
 						<em>― Lemony Snicket, <u>The Bad Beginning</u></em></p>
 					</div>
-				</div> <!-- end of col 2 -->
-			</div> <!--end of row -->
-
-		</section>
-
-		<section id="blanksAndGuesses"> <!-- contains blank spaces for current word, #of guesses remaining and letters already guessed-->
-			<div class="row">
-
-				<div class="col-sm-10 col-sm-offset-1">
-			
+	
 					<div id="blanks">
 						<h3><em>Blanks spaces go here</em></h3>
 					</div>
@@ -75,16 +78,18 @@
 					<div id="lettersGuessed">
 						<h3>You have already guessed:</h3>
 					</div>
+	
+				</div> <!-- end of col 2 -->
+			</div> <!--end of row -->
 
-				</div> <!-- end of col -->
+		</main>
 
-				<div class="col-sm-1">
+	
+		
+			
 					
-				</div> <!-- blank col to center -->
 
-			</div> <!-- end of row -->
-
-		</section>
+					
 
 	</body>
 </html>
