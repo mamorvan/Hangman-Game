@@ -48,19 +48,19 @@ var quotes = ['<p>“In this book, not only is there no happy ending, there is n
 ]; 
 
 // array of image links 
-var bookCovers = ["assets/images/BadBeginning.jpg",
-	"assets/images/ReptileRoom.png",
-	"assets/images/WideWindow.png",
-	"assets/images/MiserableMill.png",
-	"assets/images/AustereAcademy.jpg",
-	"assets/images/ErsatzElevator.jpg",
-	"assets/images/VileVillage.jpg",
-	"assets/images/HostileHospital.jpg",
-	"assets/images/CarnivorousCarnival.png",
-	"assets/images/SlipperySlope.jpg",
-	"assets/images/GrimGrotto.jpg",
-	"assets/images/PenultimatePeril.JPG",
-	"assets/images/TheEnd.jpg"
+var bookCovers = ["../images/BadBeginning.jpg",
+	"../images/ReptileRoom.png",
+	"../images/WideWindow.png",
+	"../images/MiserableMill.png",
+	"../images/AustereAcademy.jpg",
+	"../images/ErsatzElevator.jpg",
+	"../images/VileVillage.jpg",
+	"../images/HostileHospital.jpg",
+	"../images/CarnivorousCarnival.png",
+	"../images/SlipperySlope.jpg",
+	"../images/GrimGrotto.jpg",
+	"../images/PenultimatePeril.JPG",
+	"../images/TheEnd.jpg"
 ];
 
 // array of player guesses 
@@ -68,6 +68,7 @@ var guesses = [];
 
 var wins = 0;
 var losses = 0;
+var guessesLeft = 20;
 
 // when user presses a key, it will run the function
 document.onclick = function(event) {
@@ -80,6 +81,33 @@ document.onclick = function(event) {
 
 	document.querySelector("#blankSpaces").innerHTML = blanksDisplayed;
 
+// if user inputs a letter matching in answers[same index], 
+// display that letter in correct string index(es),
+
+
+ 
+// add user input to guesses array and subtract from guessesLeft
+
+
+
+
+//if user input matches letter to guesses, alert message from Genghis
+
+
+	alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
+
+//when all blanks are filled, 
+// add 1 to wins, display quote and cover with matching index
+
+
+
+
+
+//if run out of guesses before blanks are filled, 
+// display message from Count Olaf, Olaf image and add 1 to losses
+
+	var loseQuote = '<p>"You should have given up a long time ago, orphans"<br><em> -Count Olaf, <u>The Grim Grotto</u></em></p>';
+	var loseImage = "../images/CountOlafSinister.jpg";
 
 
 }
