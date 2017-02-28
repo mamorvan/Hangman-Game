@@ -14,6 +14,15 @@ var answers = ["The Bad Beginning",
 	"The End"
 ];
 
+// change all titles to all caps
+
+for(var i = 0; i < answers.length; i++) {
+
+	answers[i] = answers[i].toUpperCase();
+	console.log(answers[i]);
+
+}
+
 // array of blanks
 var blanks = ["___ ___ _________", /*3 3 9 The Bad Beginning*/
 	"___ _______ ____", /*3 7 4 The Reptile Room*/
