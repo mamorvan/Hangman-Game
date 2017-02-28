@@ -72,7 +72,7 @@ var bookCovers = ["../images/BadBeginning.jpg",
 	"../images/TheEnd.jpg"
 ];
 
-// array of player guesses 
+// array of player guesses - remember to change all inputs to caps and display as caps
 var guesses = [];
 
 var wins = 0;
