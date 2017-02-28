@@ -14,8 +14,22 @@ var answers = ["The Bad Beginning",
 	"The End"
 ];
 
-// array of blanks?
+// array of blanks
+var blanks = ["___ ___ _________", /*3 3 9 The Bad Beginning*/
+	"___ _______ ____", /*3 7 4 The Reptile Room*/
+	"___ ____ ______", /*3 4 6 The Wide Window*/
+	"___ _________ ____", /*3 9 4 The Miserable Mill*/
+	"___ _______ _______", /*3 7 7 The Austere Academy*/
+	"___ ______ ________", /*3 6 8 The Ersatz Elevator*/
+	"___ ____ _______", /*3 4 7 The Vile Village*/
+	"___ _______ ________",/*3 7 8 The Hostile Hospital*/
+	"___ ___________ ________", /*3 11 8 The Carnivorous Carnival*/
+	"___ ________ _____", /*3 8 5 The Slippery Slope*/
+	"___ ____ ______", /*3 4 6 The Grim Grotto*/
+	"___ ___________ _____", /*3 11 5 The Penultimate Peril*/
+	"___ ___" /*3 3 The End*/
 
+];
 
 // array of quotes
 var quotes = ['<p>“In this book, not only is there no happy ending, there is no happy beginning and very few happy things in the middle.”<br><em>― Lemony Snicket, <u>The Bad Beginning</u></em></p>', 
@@ -34,7 +48,7 @@ var quotes = ['<p>“In this book, not only is there no happy ending, there is n
 ]; 
 
 // array of image links 
-var bookCovers ["assets/images/BadBeginning.jpg",
+var bookCovers = ["assets/images/BadBeginning.jpg",
 	"assets/images/ReptileRoom.png",
 	"assets/images/WideWindow.png",
 	"assets/images/MiserableMill.png",
@@ -48,6 +62,27 @@ var bookCovers ["assets/images/BadBeginning.jpg",
 	"assets/images/PenultimatePeril.JPG",
 	"assets/images/TheEnd.jpg"
 ];
+
+// array of player guesses 
+var guesses = [];
+
+var wins = 0;
+var losses = 0;
+
+// when user presses a key, it will run the function
+document.onclick = function(event) {
+	var randomIndex = Math.floor(Math.random() * 13);
+	console.log(randomIndex);
+	
+
+// create HTML that will go in blank spaces and inject it into h3
+	var blanksDisplayed = blanks[randomIndex];
+
+	document.querySelector("#blankSpaces").innerHTML = blanksDisplayed;
+
+
+
+}
 
 
 
