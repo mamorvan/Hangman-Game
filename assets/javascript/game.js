@@ -100,19 +100,21 @@ document.onclick = function(event) {
 // add user input to guesses array and subtract from guessesLeft
 	document.onkeyup = function(event){
 		var userInput = event.key;
+		userInput = userInput.toUpperCase();
+		
 
 
-		if (guesses.indexOf(userInput) === -1) {
-			guesses.push(userInput);
-			guessesLeft = guessesLeft -1;
-			document.querySelector("#guessesLeft").innerHTML = guessesLeft; 
-			document.querySelector("#guesses").innerHTML = guesses;
-		}
-		else {
-			
-			alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
-		}
-	}
+			if (guesses.indexOf(userInput) === -1) {
+				guesses.push(userInput);
+				guessesLeft = guessesLeft -1;
+				document.querySelector("#guessesLeft").innerHTML = guessesLeft; 
+				document.querySelector("#guesses").innerHTML = guesses;
+			}
+			else {
+				
+				alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
+			}
+	} // end of onkey up function
 
 
 
