@@ -100,10 +100,16 @@ document.onclick = function(event) {
 // add user input to guesses array and subtract from guessesLeft
 	document.onkeyup = function(event){
 		var userInput = event.key;
+
+// change user input to uppercase
 		userInput = userInput.toUpperCase();
+
+//  check if user input is a letter
+
 		
-
-
+		if (userInput.match(/[A-Z]/) && userInput.length === 1) {
+		
+// if input is a new letter, add letter to guesses array and subtract from guesses left
 			if (guesses.indexOf(userInput) === -1) {
 				guesses.push(userInput);
 				guessesLeft = guessesLeft -1;
@@ -114,6 +120,10 @@ document.onclick = function(event) {
 				
 				alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
 			}
+		} // end of if input is letter
+		else {
+			alert("find olaf quote");
+		}
 	} // end of onkey up function
 
 
