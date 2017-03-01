@@ -72,14 +72,16 @@ var bookCovers = ["../images/BadBeginning.jpg",
 	"../images/TheEnd.jpg"
 ];
 
-// array of player guesses - remember to change all inputs to caps and display as caps
+// array of player guesses 
 var guesses = [];
+
+
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 20;
+var guessesLeft = 15;
 
-// when user presses a key, it will run the function
+// when user clicks on page, it will run the function to load a new word
 document.onclick = function(event) {
 	var randomIndex = Math.floor(Math.random() * 13);
 	console.log(randomIndex);
@@ -96,14 +98,28 @@ document.onclick = function(event) {
 
  
 // add user input to guesses array and subtract from guessesLeft
+	document.onkeyup = function(event){
+		var userInput = event.key;
 
+
+		if (guesses.indexOf(userInput) === -1) {
+			guesses.push(userInput);
+			guessesLeft = guessesLeft -1;
+			document.querySelector("#guessesLeft").innerHTML = guessesLeft; 
+			document.querySelector("#guesses").innerHTML = guesses;
+		}
+		else {
+			
+			alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
+		}
+	}
 
 
 
 //if user input matches letter to guesses, alert message from Genghis
 
 
-	alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis, The Austere Academy');
+	
 
 //when all blanks are filled, 
 // add 1 to wins, display quote and cover with matching index
