@@ -72,19 +72,34 @@ var bookCovers = ["../images/BadBeginning.jpg",
 
 // array of player guesses 
 var guesses = [];
-
 var wins = 0;
 var losses = 0;
 var guessesLeft = 15;
 var randomIndex;
+// array of random indexes used
+var indexUsed = [];
 
-// when user clicks on page, it will run the function to load a new word
-// work on clicking on #blanks section only
+// when user clicks on blanks box, load a new word
 
 document.getElementById("blanks").onclick = function(event) {
 	randomIndex = Math.floor(Math.random() * 13);
 
 	console.log(randomIndex);
+
+	// store randomIndex and do not repeat until all 13 titles have been used
+
+	
+	// indexUsed.push(randomIndex);
+	
+	// if (indexUsed.findIndex(randomIndex) === -1) {
+	// 	randomIndex = Math.floor(Math.random() * 13);
+	// 	console.log(randomIndex);
+	// }
+
+
+
+
+	// console.log(indexUsed);
 
 	// create HTML that will go in blank spaces and inject it into h3
 	var blanksDisplayed = blanks[randomIndex];
