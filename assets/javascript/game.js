@@ -81,7 +81,7 @@ var randomIndex;
 // when user clicks on page, it will run the function to load a new word
 // work on clicking on #blanks section only
 
-document.onclick = function(event) {
+document.getElementById("blanks").onclick = function(event) {
 	randomIndex = Math.floor(Math.random() * 13);
 
 	console.log(randomIndex);
