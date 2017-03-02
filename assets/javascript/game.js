@@ -19,8 +19,6 @@ var answers = ["The Bad Beginning",
 for(var i = 0; i < answers.length; i++) {
 
 	answers[i] = answers[i].toUpperCase();
-	console.log(answers[i]);
-
 }
 
 // array of blanks
@@ -85,6 +83,7 @@ var randomIndex;
 
 document.onclick = function(event) {
 	randomIndex = Math.floor(Math.random() * 13);
+
 	console.log(randomIndex);
 
 	// create HTML that will go in blank spaces and inject it into h3
@@ -95,12 +94,14 @@ document.onclick = function(event) {
 	var titleString = answers[randomIndex];
 	console.log (titleString);
 	var answerBlanks = blanks[randomIndex];
+
 	console.log(answerBlanks);
 
 	//convert each string into an array
 	var titleArr = titleString.split("");
 	console.log(titleArr);
 	var blanksArr = answerBlanks.split("");
+
 	console.log(blanksArr);
 
  
@@ -122,7 +123,7 @@ document.onclick = function(event) {
 				document.querySelector("#guesses").innerHTML = guesses;
 
 				// loop through titleArr and find indexes of userInput matches
-				
+
 				// titleArr.forEach(function(letter) {
 
 				// 	if (userInput === letter) {
@@ -134,10 +135,15 @@ document.onclick = function(event) {
 				for  (var i = 0; i < titleArr.length; i++) {
 					if (userInput === titleArr[i]) {
 						var matchIndex = i;
-						console.log(matchIndex);
-						
-						
 
+						console.log(matchIndex);
+
+						blanksArr.splice(i, 1, userInput);
+
+						console.log(blanksArr);
+
+						answerBlanks = blanksArr.join("");
+						document.querySelector("#blankSpaces").innerHTML = answerBlanks
 
 					}
 				}
