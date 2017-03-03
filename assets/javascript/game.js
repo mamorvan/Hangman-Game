@@ -79,144 +79,142 @@ var randomIndex;
 // array of random indexes used
 var indexUsed = [];
 
-// when user clicks on blanks box, load a new word
+var titleArr;
+var blanksArr;
 
-document.getElementById("blanks").onclick = function(event) {
 
-		randomIndex = Math.floor(Math.random() * 13);
 
+function loadNewGame() {
+
+	randomIndex = Math.floor(Math.random() * 13);
 console.log(randomIndex);
 
-		// reset guesses to 15
-		guessesLeft = 15;
+	titleArr = answers[randomIndex].split("");
+	blanksArr = blanks[randomIndex].split("");
+
+	// reset guesses to 15 and letters guessed 
+	guessesLeft = 15;
+	guesses = [];
+	document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+	document.querySelector("#guesses").innerHTML = guesses; 
+
 
 //?work on later and add to other reloads - store randomIndex and do not repeat until all 13 titles have been used
 	
 
 	// create HTML that will go in blank spaces and inject it into h3
-	var blanksDisplayed = blanks[randomIndex];
-	document.querySelector("#blankSpaces").innerHTML = blanksDisplayed;
-
-	//get correct answer and matching blanks from arrays and store into string 
-	var titleString = answers[randomIndex];
-console.log (titleString);
-	var answerBlanks = blanks[randomIndex];
-
-console.log(answerBlanks);
-
-	//convert each string into an array
-	var titleArr = titleString.split("");
+	
+	document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex];
+	
 console.log(titleArr);
-	var blanksArr = answerBlanks.split("");
-
-console.log(blanksArr);
-
-
-
- 
-	// beginning of onkeyup function
-	document.onkeyup = function(event){
-		var userInput = event.key;
-
-		//change user input to uppercase
-		userInput = userInput.toUpperCase();
-
-		//check if all blanks are filled, check with indexOf to see if any blanks left
-		// add 1 to wins, display quote and cover with matching index, load new blanks
-
-console.log(blanks[randomIndex]);		
-console.log(answerBlanks);
-console.log(blanksArr);
-
-
-
-		if (answerBlanks.indexOf("_") === -1) {
-			wins += 1;
-			document.getElementById("winsCount").innerHTML = wins;
-		} // end of no blanks left - win
-
-
-		//if run out of guesses before blanks are filled, check if guesses left is 0 and blanks are left with charAt
-		// display message from Count Olaf, Olaf image and add 1 to losses, load new blanks
-		else if (answerBlanks.indexOf("_") !== -1 && guessesLeft < 1) {
-			losses += 1;
-			document.getElementById("lossesCount").innerHTML = losses;
-			var loseQuote = '<p>"You should have given up a long time ago, orphans"<br><em> -Count Olaf, <u>The Grim Grotto</u></em></p>';
-			var loseImage = "assets/images/CountOlafSinister.jpg";
-			document.getElementById("bookCover").setAttribute("src", loseImage);
-			document.getElementById("quote").innerHTML = loseQuote;
-
-			// load new game
-			randomIndex = Math.floor(Math.random() * 13);
-
-			console.log(randomIndex);
-
-			// reset guesses to 15
-			guessesLeft = 15;
-
 	
 
-		} // end of else if ran out of guesses and lost
+console.log(blanksArr);
+} // end of loadNewGame function
 
-			
 
 
-		//if blanks left and guesses are more than 0
-		else {
+// when user clicks on blanks box, load a new word
 
-			// check if user input is a single letter		
-			if (userInput.match(/[A-Z]/) && userInput.length === 1) {
-			
-				// if input is a new letter, add letter to guesses array and subtract from guesses left
-				if (guesses.indexOf(userInput) === -1) {
-					guesses.push(userInput);
-					guessesLeft = guessesLeft - 1;
-					document.querySelector("#guessesLeft").innerHTML = guessesLeft; 
-					document.querySelector("#guesses").innerHTML = guesses;
+document.getElementById("blanks").onclick = function(event) { 
+	loadNewGame();
 
-					// loops through arrays for matches and replaces _ with letters
-					for  (var i = 0; i < titleArr.length; i++) {
-						
-						
-						// loop through titleArr and find indexes of userInput matches
-						if (userInput === titleArr[i]) {
-							var matchIndex = i;
+} // end of click on box and load new game
 
-							console.log(matchIndex);
+		
+ 
+	// beginning of onkeyup function
+document.onkeyup = function(event){
+	var userInput = event.key;
 
-							blanksArr.splice(i, 1, userInput);
+	//change user input to uppercase
+	userInput = userInput.toUpperCase();
 
-							console.log(blanksArr);
+	//check if all blanks are filled, check with indexOf to see if any blanks left
+	// add 1 to wins, display quote and cover with matching index, load new blanks
 
-							answerBlanks = blanksArr.join("");
-							document.querySelector("#blankSpaces").innerHTML = answerBlanks
+	if (blanks[randomIndex].indexOf("_") === -1) {
+		wins += 1;
+		document.getElementById("winsCount").innerHTML = wins;
+		loadNewGame();
+	} // end of no blanks left - win
 
-						}
 
+	//if run out of guesses before blanks are filled, check if guesses left is 0 and blanks are left with charAt
+	// display message from Count Olaf, Olaf image and add 1 to losses, load new blanks
+	else if (blanks[randomIndex].indexOf("_") !== -1 && guessesLeft < 1) {
+		losses += 1;
+		document.getElementById("lossesCount").innerHTML = losses;
+		var loseQuote = '<p>"You should have given up a long time ago, orphans"<br><em> -Count Olaf, <u>The Grim Grotto</u></em></p>';
+		var loseImage = "assets/images/CountOlafSinister.jpg";
+		document.getElementById("bookCover").setAttribute("src", loseImage);
+		document.getElementById("quote").innerHTML = loseQuote;
+		loadNewGame();
+
+
+
+
+	} // end of else if ran out of guesses and lost
+
+		
+
+
+	//if blanks left and guesses are more than 0
+	else {
+
+		// check if user input is a single letter		
+		if (userInput.match(/[A-Z]/) && userInput.length === 1) {
+		
+			// if input is a new letter, add letter to guesses array and subtract from guesses left
+			if (guesses.indexOf(userInput) === -1) {
+				guesses.push(userInput);
+				guessesLeft = guessesLeft - 1;
+				document.querySelector("#guessesLeft").innerHTML = guessesLeft; 
+				document.querySelector("#guesses").innerHTML = guesses;
+
+				// loops through arrays for matches and replaces _ with letters
+				for  (var i = 0; i < titleArr.length; i++) {
+					
+					
+					// loop through titleArr and find indexes of userInput matches
+					if (userInput === titleArr[i]) {
+						var matchIndex = i;
+
+						console.log(matchIndex);
+
+						blanksArr.splice(i, 1, userInput);
+
+						console.log(blanksArr);
+
+						blanks[randomIndex] = blanksArr.join("");
+						document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex]
 
 					}
 
 
+				}
 
 
-				} // end of if input is a new letter
-				else{
-					
-					alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis');
-				} // end of else input is a repeat
-
-			} // end of if input is letter
-			else {
-				alert('That\'s not a letter! \n "I\'m sure you all need some brushing up on your grammar, actually.  Grammar is the greatest joy in life, don\'t you find?" \r\n - Aunt Josephine');
-			} // end of else not a letter
-
-		} // end of else not win or loss yet
-	
-
-	} // end of onkey up function
 
 
-} // end of click on box and load new game
+			} // end of if input is a new letter
+			else{
+				
+				alert('You\'ve already guessed that! \n "Not only am I intelligent, but I\'m also very smart." \r\n - Coach Genghis');
+			} // end of else input is a repeat
+
+		} // end of if input is letter
+		else {
+			alert('That\'s not a letter! \n "I\'m sure you all need some brushing up on your grammar, actually.  Grammar is the greatest joy in life, don\'t you find?" \r\n - Aunt Josephine');
+		} // end of else not a letter
+
+	} // end of else not win or loss yet
+
+
+} // end of onkeyup
+
+
+
 
 
 
