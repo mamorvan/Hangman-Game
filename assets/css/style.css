@@ -80,6 +80,7 @@ img {
 #quote {
 	margin: 80px 10px 10px 10px;
 	height: 100px;
+	font-size: 17px;
 }
 
 #blanks {
@@ -91,7 +92,7 @@ img {
 }
 
 #blankSpaces {
-	letter-spacing: 5px;
+	letter-spacing: 10px;
 	font-size: 40px;
 }
 

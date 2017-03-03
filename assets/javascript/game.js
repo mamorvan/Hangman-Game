@@ -47,7 +47,7 @@ var quotes = ['<p>“In this book, not only is there no happy ending, there is n
 	'<p>"Even though I am unbelievably wealthy, you may call me Esm&eacute.  I&#39ll learn your names later.  I&#39m very happy you&#39re here, because orphans are in, and when all my friends hear that I have three real live orphans, they&#39ll be sick with jealousy”<br><em>― Esm&eacute Squalor, <u>The Ersatz Elevator</u></em></p>',
 	'<p>"If you refuse to entertain a baby cousin, the baby cousin may get bored and entertain itself by wandering off and falling down a well. If you refuse to entertain a pack of hyenas, they may become restless and entertain themselves by devouring you.”<br><em>― Lemony Snicket, <u>The Vile Village</u></em></p>',
 	'<p>"Operating theaters are not nearly as popular as dramatic theaters, musical theaters, and movie theaters, and it is easy to see why.”<br><em>― Lemony Snicket, <u>The Hostile Hospital</u></em></p>',
-	'<p>"But the sad truth is that the truth is sad, and that what you want does not matter.  A series of unfortunate events ca happen to anyone, no matter what they want.”<br><em>― Lemony Snicket, <u>The Carnivorous Carnival</u></em></p>',
+	'<p>"But the sad truth is that the truth is sad, and that what you want does not matter.  A series of unfortunate events can happen to anyone, no matter what they want.”<br><em>― Lemony Snicket, <u>The Carnivorous Carnival</u></em></p>',
 	'<p>"The poet found that the road less traveled was peaceful but quite lonely, and he was probably a bit nervous as he went along, because if anything happened on the road less traveled, the other travelers would be on the road more frequently traveled and so couldn&#39t hear him as he cried for help. Sure enough, that poet is dead.”<br><em>― Lemony Snicket, <u>The Slippery Slope</u></em></p>',
 	'<p>"Having a personal philosophy is like having a pet marmoset, because it may be very attractive when you acquire it, but there may be situations when it will not come in handy at all.”<br><em>― Lemony Snicket, <u>The Grim Grotto</u></em></p>',
 	'<p>"It is a policy of our organization that all picnics travel separately from the volunteers.  If our enemies capture the picnic, they won&#39t get their clutches on us, and if our enemies capture us, they won&#39t get the picnic.”<br><em>― Kit Snicket, <u>The Penultimate Peril</u></em></p>',
@@ -134,15 +134,20 @@ document.onkeyup = function(event){
 	// add 1 to wins, display quote and cover with matching index, load new blanks
 
 	if (blanks[randomIndex].indexOf("_") === -1) {
+
 		wins += 1;
 		document.getElementById("winsCount").innerHTML = wins;
+		document.getElementById("bookCover").setAttribute("src", bookCovers[randomIndex]);
+		document.getElementById("quote").innerHTML = quotes[randomIndex];
 		loadNewGame();
+
 	} // end of no blanks left - win
 
 
 	//if run out of guesses before blanks are filled, check if guesses left is 0 and blanks are left with charAt
 	// display message from Count Olaf, Olaf image and add 1 to losses, load new blanks
 	else if (blanks[randomIndex].indexOf("_") !== -1 && guessesLeft < 1) {
+
 		losses += 1;
 		document.getElementById("lossesCount").innerHTML = losses;
 		var loseQuote = '<p>"You should have given up a long time ago, orphans"<br><em> -Count Olaf, <u>The Grim Grotto</u></em></p>';
@@ -150,9 +155,6 @@ document.onkeyup = function(event){
 		document.getElementById("bookCover").setAttribute("src", loseImage);
 		document.getElementById("quote").innerHTML = loseQuote;
 		loadNewGame();
-
-
-
 
 	} // end of else if ran out of guesses and lost
 
