@@ -76,6 +76,7 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 15;
 var randomIndex;
+
 // array of random indexes used
 var indexUsed = [];
 
@@ -86,30 +87,53 @@ var blanksArr;
 
 function loadNewGame() {
 
-	randomIndex = Math.floor(Math.random() * 13);
+	randomIndex = Math.floor(Math.random() * answers.length);
 console.log(randomIndex);
 
-	titleArr = answers[randomIndex].split("");
-	blanksArr = blanks[randomIndex].split("");
+	//if randomIndex has not already been used do this
+	if (indexUsed.indexOf(randomIndex) === -1) {
+		indexUsed.push(randomIndex);
+console.log(indexUsed);
+		
+		//if indexUsed array has used all reset it to empty
+		if (indexUsed.length === answers.length) {
+			indexUsed = [];
+		}
 
-	// reset guesses to 15 and letters guessed 
-	guessesLeft = 15;
-	guesses = [];
-	document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-	document.querySelector("#guesses").innerHTML = guesses; 
+		// makes an array with a string for each character in answer and blank string at random index
+		titleArr = answers[randomIndex].split("");
+		blanksArr = blanks[randomIndex].split("");
 
-
-//?work on later and add to other reloads - store randomIndex and do not repeat until all 13 titles have been used
+		// reset guesses to 15 and letters guessed 
+		guessesLeft = 15;
+		guesses = [];
+		document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+		document.querySelector("#guesses").innerHTML = guesses; 
+		// create HTML that will go in blank spaces and inject it into h3
 	
-
-	// create HTML that will go in blank spaces and inject it into h3
-	
-	document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex];
+		document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex];
 	
 console.log(titleArr);
 	
 
 console.log(blanksArr);
+	}// end of if new random index
+
+	//if randomIndex has been used, get a new random index
+	else {
+		// keep getting randomIndex until it is not a match
+	while (indexUsed.indexOf(randomIndex) !== -1){
+		randomIndex = Math.floor(Math.random() * answers.length);
+console.log(randomIndex);
+
+	} // end of while randomIndex has already been used
+} // end of else randomIndex has been used
+
+
+
+	
+
+	
 } // end of loadNewGame function
 
 
@@ -182,11 +206,11 @@ document.onkeyup = function(event){
 					if (userInput === titleArr[i]) {
 						var matchIndex = i;
 
-						console.log(matchIndex);
+// console.log(matchIndex);
 
 						blanksArr.splice(i, 1, userInput);
 
-						console.log(blanksArr);
+// console.log(blanksArr);
 
 						blanks[randomIndex] = blanksArr.join("");
 						document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex]
