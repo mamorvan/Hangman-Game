@@ -80,8 +80,11 @@ var randomIndex;
 // array of random indexes used
 var indexUsed = [];
 
+//create array of each character from randomIndex string from answers and blanks 
 var titleArr;
 var blanksArr;
+
+
 
 
 
@@ -152,12 +155,8 @@ console.log("titleArr:" + titleArr);
 
 console.log("blanksArr:" + blanksArr);
 
-	} // end of while randomIndex has already been used
-} // end of else randomIndex has been used
-
-
-
-	
+		}	 // end of while randomIndex has already been used
+	} // end of else randomIndex has been used
 
 	
 } // end of loadNewGame function
@@ -240,14 +239,9 @@ document.onkeyup = function(event){
 
 						blanks[randomIndex] = blanksArr.join("");
 						document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex]
-
 					}
 
-
 				}
-
-
-
 
 			} // end of if input is a new letter
 			else{
