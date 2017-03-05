@@ -108,11 +108,16 @@ console.log("indexUsed:" + indexUsed);
 		// keep getting randomIndex until it is not a match
 		while (indexUsed.indexOf(randomIndex) !== -1){
 			randomIndex = Math.floor(Math.random() * answers.length);
-		
-console.log("randomIndex:" + randomIndex);
+			
 
+
+			
+		}// end of while randomIndex has already been used	
+		indexUsed.push(randomIndex);
 		loadNewBlanks();
-		}	 // end of while randomIndex has already been used
+		console.log("randomIndex 2nd time:" + randomIndex);
+		console.log("indexUsed 2nd time:" + indexUsed);
+		 
 	} // end of else randomIndex has been used
 
 	
