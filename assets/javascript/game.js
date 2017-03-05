@@ -83,6 +83,8 @@ var indexUsed = [];
 //create array of each character from randomIndex string from answers and blanks 
 var titleArr;
 var blanksArr;
+var tempArr;
+
 
 
 
@@ -97,30 +99,8 @@ console.log("randomIndex:" + randomIndex);
 	if (indexUsed.indexOf(randomIndex) === -1) {
 		indexUsed.push(randomIndex);
 console.log("indexUsed:" + indexUsed);
-		
-		//if indexUsed array has used all reset it to empty
-		if (indexUsed.length === answers.length) {
-			indexUsed = [];
-		}
 
-		// makes an array with a string for each character in answer and blank string at random index
-		titleArr = answers[randomIndex].split("");
-		blanksArr = blanks[randomIndex].split("");
-
-		// reset guesses to 15 and letters guessed 
-		guessesLeft = 15;
-		guesses = [];
-		document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-		document.querySelector("#guesses").innerHTML = guesses; 
-		
-		// create HTML that will go in blank spaces and inject it into h3
-	
-		document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex];
-	
-console.log("titleArr:" + titleArr);
-	
-
-console.log("blanksArr:" + blanksArr);
+		loadNewBlanks();		
 	}// end of if new random index
 
 	//if randomIndex has been used, get a new random index
@@ -131,7 +111,15 @@ console.log("blanksArr:" + blanksArr);
 		
 console.log("randomIndex:" + randomIndex);
 
-		//if indexUsed array has used all reset it to empty
+		loadNewBlanks();
+		}	 // end of while randomIndex has already been used
+	} // end of else randomIndex has been used
+
+	
+} // end of loadNewGame function
+
+function loadNewBlanks() {
+	//if indexUsed array has used all reset it to empty
 		if (indexUsed.length === answers.length) {
 			indexUsed = [];
 		}
@@ -139,6 +127,7 @@ console.log("randomIndex:" + randomIndex);
 		// makes an array with a string for each character in answer and blank string at random index
 		titleArr = answers[randomIndex].split("");
 		blanksArr = blanks[randomIndex].split("");
+		tempArr = blanks[randomIndex];
 
 		// reset guesses to 15 and letters guessed 
 		guessesLeft = 15;
@@ -151,16 +140,10 @@ console.log("randomIndex:" + randomIndex);
 		document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex];
 	
 console.log("titleArr:" + titleArr);
-	
+console.log("blanks:" + blanks)
 
 console.log("blanksArr:" + blanksArr);
-
-		}	 // end of while randomIndex has already been used
-	} // end of else randomIndex has been used
-
-	
-} // end of loadNewGame function
-
+}// end of loadNewBlanks function
 
 
 // when user clicks on blanks box, load a new word
@@ -182,20 +165,22 @@ document.onkeyup = function(event){
 	//check if all blanks are filled, check with indexOf to see if any blanks left
 	// add 1 to wins, display quote and cover with matching index, load new blanks
 
-	if (blanks[randomIndex].indexOf("_") === -1) {
+	if (tempArr.indexOf("_") === -1) {
 
 		wins += 1;
 		document.getElementById("winsCount").innerHTML = wins;
 		document.getElementById("bookCover").setAttribute("src", bookCovers[randomIndex]);
 		document.getElementById("quote").innerHTML = quotes[randomIndex];
+		
 		loadNewGame();
+
 
 	} // end of no blanks left - win
 
 
 	//if run out of guesses before blanks are filled, check if guesses left is 0 and blanks are left with charAt
 	// display message from Count Olaf, Olaf image and add 1 to losses, load new blanks
-	else if (blanks[randomIndex].indexOf("_") !== -1 && guessesLeft < 1) {
+	else if (tempArr.indexOf("_") !== -1 && guessesLeft < 1) {
 
 		losses += 1;
 		document.getElementById("lossesCount").innerHTML = losses;
@@ -203,6 +188,7 @@ document.onkeyup = function(event){
 		var loseImage = "assets/images/CountOlafSinister.jpg";
 		document.getElementById("bookCover").setAttribute("src", loseImage);
 		document.getElementById("quote").innerHTML = loseQuote;
+
 		loadNewGame();
 
 	} // end of else if ran out of guesses and lost
@@ -237,8 +223,8 @@ document.onkeyup = function(event){
 
 // console.log(blanksArr);
 
-						blanks[randomIndex] = blanksArr.join("");
-						document.querySelector("#blankSpaces").innerHTML = blanks[randomIndex]
+						tempArr = blanksArr.join("");
+						document.querySelector("#blankSpaces").innerHTML = tempArr;
 					}
 
 				}
@@ -258,22 +244,3 @@ document.onkeyup = function(event){
 
 
 } // end of onkeyup
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
